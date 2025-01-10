@@ -16,14 +16,15 @@ services:
       POSTGRES_DB: app_db
     ports:
       - "5432:5432"
-    # volumes:
-    #   - db_data:/var/lib/postgresql/data
     networks:
       - app_network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "user", "-d", "app_db"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
 
 networks:
   app_network:
     driver: bridge
-
-# volumes:
-#   db_data:

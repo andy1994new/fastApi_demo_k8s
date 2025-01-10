@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 # SQLALCHEMY_DATABASE_URL = "postgresql://andyg:@localhost:5432/postgres"
 
 # this is for the dock compose test
-SQLALCHEMY_DATABASE_URL = "postgres://user:password@db:5432/postgres"
+SQLALCHEMY_DATABASE_URL = "postgresql://user:password@db:5432/app_db"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 
