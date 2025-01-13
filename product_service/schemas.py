@@ -61,3 +61,13 @@ class ProductStockUpdateSchema(BaseModel):
     """
 
     add_amount: int
+
+class ProductRequireSchema(BaseModel):
+    """
+    Schema for update the stock of a product.
+
+    Attributes:
+        add_amount (str): The number of the product to add into stock.
+    """
+
+    ids: list[int]

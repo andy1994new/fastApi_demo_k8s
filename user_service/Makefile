@@ -1,6 +1,12 @@
 install:
 	pip install -r requirments.txt
 
+format:
+	black *.py
+
+lint:
+	pylint *.py
+
 database:
 	#this is only for test on local machine
 	#psql postgres

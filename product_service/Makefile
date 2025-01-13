@@ -13,7 +13,7 @@ database:
 	brew services start postgresql
 
 run:
-	uvicorn --host 0.0.0.0 --port 8000 main:app
+	uvicorn --host 0.0.0.0 --port 8001 main:app
 
 test:
 	#test user service

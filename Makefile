@@ -1,13 +1,17 @@
 install:
-	pip instal -r requirements.txt
+	pip install -r requirements.txt
 
-# Build all service Docker images
+format:
+	black user_service/*.py product_service/*.py order_service/*.py
+
+lint:
+	pylint user_service/*.py product_service/*.py order_service/*.py
+
 build:
 	$(MAKE) -C user_service build
 	$(MAKE) -C product_service build
 	$(MAKE) -C order_service build
 
-# Test all services
 test:
 	$(MAKE) -C user_service test
 	$(MAKE) -C product_service test

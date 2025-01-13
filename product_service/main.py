@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from fastapi import FastAPI, Depends, HTTPException
 import models
 from database import engine, get_db
-from schemas import ProductCreateSchema, ProductSchema, ProductStockUpdateSchema
+from schemas import ProductCreateSchema, ProductSchema, ProductStockUpdateSchema, ProductRequireSchema
 
 
 models.Base.metadata.create_all(engine)
@@ -46,6 +46,25 @@ def get_product_by_id(product_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Product not found")
     return product
 
+@app.post("/product/getlist", response_model=list[ProductSchema])
+def get_product_by_id(request: ProductRequireSchema, db: Session = Depends(get_db)):
+    """
+    Handle POST request to retrieve a list of products by their IDs.
+    """
+
+    products = db.query(models.Product).filter(models.Product.id.in_(request.ids)).all()
+    
+    if not products:
+        raise HTTPException(status_code=404, detail="No products found for the given IDs")
+    
+    found_ids = {product.id for product in products}
+    missing_ids = set(request.ids) - found_ids
+    if missing_ids:
+        raise HTTPException(
+            status_code=404, 
+            detail=f"Products not found for the following IDs: {missing_ids}"
+        )
+    return products
 
 @app.put("/product/{product_id}", response_model=ProductSchema)
 def update_product_stock(

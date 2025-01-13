@@ -10,9 +10,9 @@ from sqlalchemy.orm import sessionmaker
 
 # SQLALCHEMY_DATABASE_URL is the connection string for the PostgreSQL database.
 # For local testing:
-# SQLALCHEMY_DATABASE_URL = "postgresql://andyg:@localhost:5432/postgres"
+SQLALCHEMY_DATABASE_URL = "postgresql://andyg:@localhost:5432/postgres"
 # For the Docker Compose setup:
-SQLALCHEMY_DATABASE_URL = "postgresql://user:password@db:5432/app_db"
+# SQLALCHEMY_DATABASE_URL = "postgresql://user:password@db:5432/app_db"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 

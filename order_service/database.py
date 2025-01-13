@@ -16,7 +16,7 @@ SQLALCHEMY_DATABASE_URL = "postgresql://andyg:@localhost:5432/postgres"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 
-User_Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Order_Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 def get_db():
@@ -30,7 +30,7 @@ def get_db():
     Returns:
         Session: A SQLAlchemy session object.
     """
-    db = User_Session()
+    db = Order_Session()
     try:
         yield db
     finally:
