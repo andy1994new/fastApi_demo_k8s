@@ -19,7 +19,7 @@ test:
 	#test user service
 
 build:
-	docker build -t user_service .
+	docker build -t order_service .
 
 docker_run:
 	docker-compose up -d --build
